@@ -1,0 +1,62 @@
+﻿@model InventoryManagement.Models.Brand
+
+<script>
+    $(document).ready(function () {
+        if ('@ViewBag.msg' != '') {
+            alert('@ViewBag.msg')
+        }
+    })
+
+</script>
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="page-header">
+            <div class="page-title">
+                <h4>Brand ADD</h4>
+                <h6>Edit new Brand</h6>
+            </div>
+        </div>
+        <!-- /add -->
+        <div class="card">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="BrandId"/>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Brand Name</label>
+                                <input type="text" asp-for="BrandName">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" asp-for="BrandDescription"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Product Image</label>
+                                <div class="image-upload">
+                                    <input type="file" asp-for="BrandImage">
+                                    <div class="image-uploads">
+                                        <img src="assets/img/icons/upload.svg" alt="img">
+                                        <h4>Drag and drop a file to upload</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <input type="submit" class="btn btn-submit me-2" value="Update" />
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <!-- /add -->
+    </div>
+</div>

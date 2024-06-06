@@ -1,0 +1,110 @@
+﻿@model InventoryManagement.Models.ChangePasswordDto
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="page-header">
+            <div class="page-title">
+                <h4>Change Password</h4>
+                <h6>Change Password</h6>
+            </div>
+        </div>
+        <!-- /add -->
+
+
+        <div class="card">
+
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-12">
+                        <div class="form-group">
+                            <label>OlD Password</label>
+                            <input type="text" asp-for="OLDPassword" />
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-12">
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="text" asp-for="NewPassword" />
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-12">
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="text" asp-for="ConfirmPassword" />
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-12">
+                        <div class="form-group">
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-12">
+                        <div class="form-group">
+                            <input type="button" class="btn btn-secondary" value="Save" onclick="Save(this)" />
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /add -->
+
+    </div>
+</div>
+<script>
+
+    function Save(obj) {
+
+        debugger;
+
+        var oldPass = $("#OLDPassword").val();
+        var newPass = $("#NewPassword").val();
+        var confirmPass = $("#ConfirmPassword").val();
+
+
+        if (oldPass == "") {
+            alert("Please Enter a Password");
+            return;
+        }
+
+        if (newPass == "") {
+            alert("Please Enter a New Password");
+            return;
+        }
+
+        if (confirmPass == "") {
+            alert("Please Enter a Confirm Password");
+            return;
+        }
+
+        if (newPass != confirmPass) {
+            alert("Password Do not matche");
+            return
+        }
+
+        $.post("/Account/ChangePasswod", { oldPass: oldPass, confirmPass: confirmPass }, function (res) {
+
+            if (res != null && res != "") {
+
+                alert(res);
+            }
+
+
+        });
+
+
+
+
+    }
+
+</script>
