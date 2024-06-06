@@ -30,6 +30,9 @@ namespace InventoryManagement.Controllers
                         string RoleId = Convert.ToString(dt.Rows[0]["RoleId"].ToString());
                         string username = dt.Rows[0]["UserName"].ToString();
                         string UserId = dt.Rows[0]["UserId"].ToString();
+
+
+
                         if (pass == model.Password)
                         {
 
