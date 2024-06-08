@@ -343,6 +343,7 @@ namespace InventoryManagement.Models
                 cmd.Parameters.AddWithValue("@BrandImg", model.BrandImagePath == null ? "" : model.BrandImagePath);
                 cmd.Parameters.AddWithValue("@UpdatedBy", model.UpdatedBy);
                 int n = cmd.ExecuteNonQuery();
+				con.Close();
                 if (n > 0)
                 {
                     return true;
@@ -353,6 +354,31 @@ namespace InventoryManagement.Models
                     return false;
                 }
             }
+        }
+
+        public bool InsertPurachseData(PurchaseDto model)
+        {
+			using (SqlConnection con=new SqlConnection(Connectionstring))
+			{
+				con.Open();
+				SqlCommand cmd = new SqlCommand("sp_insertPurachase", con);
+				cmd.CommandType = CommandType.StoredProcedure;
+				cmd.Parameters.AddWithValue("@SuplierName", model.SuplierName);
+				cmd.Parameters.AddWithValue("@BillNo", model.BillNo);
+				cmd.Parameters.AddWithValue("@BillDeatils", model.BillDeatils);
+				cmd.Parameters.AddWithValue("@MobileNo", model.MobileNo);
+				cmd.Parameters.AddWithValue("@CreadteBy", model.CreatedBy);
+				int n= cmd.ExecuteNonQuery();
+				if (n > 0)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+				con.Close();
+			}
         }
     }
 }

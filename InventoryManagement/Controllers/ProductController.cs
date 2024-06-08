@@ -1,7 +1,9 @@
 ﻿using InventoryManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using System.Data;
+using System.Reflection;
 
 namespace InventoryManagement.Controllers
 {
@@ -329,14 +331,32 @@ namespace InventoryManagement.Controllers
             return View();  
         }
 
+        [HttpGet]
 		public IActionResult Sales()
 		{
+            var bill = "";
 			return View();
 		}
 
 
+        [HttpPost]
+        public IActionResult SavePurachse(string data)
+        {
+             var msg = "";
+             var model = JsonConvert.DeserializeObject<PurchaseDto>(data);
+             if (model != null)
+            {
 
-	}
+                bool status = dl.InsertPurachseData(model);
+            }
+
+            return Json(msg);
+        }
+
+
+
+
+    }
 
 
 }
