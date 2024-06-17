@@ -340,7 +340,7 @@ namespace InventoryManagement.Controllers
 
 
         [HttpPost]
-        public IActionResult SavePurachse(string data)
+        public IActionResult SavePurchase(string data)
         {
              var msg = "";
              var model = JsonConvert.DeserializeObject<PurchaseDto>(data);
@@ -348,6 +348,9 @@ namespace InventoryManagement.Controllers
             {
 
                 bool status = dl.InsertPurachseData(model);
+                 if (status) {
+                    msg = "Purchase Sucessfully Save";
+                }
             }
 
             return Json(msg);
